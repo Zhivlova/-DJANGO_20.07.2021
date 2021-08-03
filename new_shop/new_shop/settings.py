@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'authapp',
     'basketapp',
     'adminapp',
+    'ordersapp',
 
     'social_django',
 ]
@@ -175,8 +176,8 @@ DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 
 EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '6138662d624633'
-EMAIL_HOST_PASSWORD = '9ec7547a94560f'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = '465'
 EMAIL_USE_TLS = True
 
@@ -185,8 +186,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',
 )
 
-with open('new_shop/vk.json', 'r') as file:
-    VK = json.load(file)
+# with open('new_shop/vk.json', 'r') as file:
+#     VK = json.load(file)
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_ID']
-SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
+SOCIAL_AUTH_VK_OAUTH2_KEY = env('SOCIAL_AUTH_VK_OAUTH2_ID')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env('SOCIAL_AUTH_VK_OAUTH2_KEY')
