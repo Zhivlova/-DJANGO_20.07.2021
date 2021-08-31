@@ -8,13 +8,12 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 
+from mainapp.models import Product
 from .models import Order, OrderItem
 from basketapp.models import Basket
 from .forms import OrderForm, OrderItemForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-from ..mainapp.models import Product
 
 
 class OrderList(LoginRequiredMixin, ListView):
@@ -151,10 +150,11 @@ def product_quantity_update_delete(sender, instance, **kwargs):
     instance.product.quantity += instance.quantity
     instance.product.save()
 
-    def get_product_price(request, pk):
-        if request.is_ajax():
-            product = Product.objects.filter(pk=int(pk)).first()
-            if product:
-                return JsonResponse({'price': product.price})
-            else:
-                return JsonResponse({'price': 0})
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+        if product:
+            return JsonResponse({'price': product.price})
+        else:
+            return JsonResponse({'price': 0})
