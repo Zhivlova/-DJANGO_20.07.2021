@@ -117,7 +117,7 @@ WSGI_APPLICATION = 'new_shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'geekshop',
+        'NAME': 'new_shop',
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'postgres',
     }
